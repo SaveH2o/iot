@@ -1,2 +1,2 @@
 # iot
-IoT cluster on Google Cloud Platform
+IoT cluster on Google Cloud Platform.
