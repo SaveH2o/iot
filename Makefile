@@ -42,7 +42,7 @@ cassandra:												## Deploy Cassandra Operator
 
 configmap:												## Deploy ConfigMap
 	@cat deploy/cassandra/05-configMap.yaml | \
-		sed "s/superuserpassword/$(shell $(KUBECTL) get secret cluster1-superuser -n $(CASSANDRA) -o yaml | grep -m1 -Po 'password: \K.*' | base64 -d && echo "")/" - \
+		sed "s/superuserpassword/$(shell $(KUBECTL) get secret cluster2-superuser -n $(CASSANDRA) -o yaml | grep -m1 -Po 'password: \K.*' | base64 -d && echo "")/" - \
 		> deploy/cassandra/configMap.yaml
 
 studio:													## Deploy Studio
@@ -86,7 +86,7 @@ pushgateway:											## Deploy Prometheus Push Gateway
 ##########################################################
 ##@ UTIL
 ##########################################################
-.PHONY: proxies kill-proxies kill-prometheus kill-dashboard help clean cron-connector
+.PHONY: proxies kill-proxies kill-prometheus kill-dashboard kill-studio help cron-connector
 
 proxies:												## Proxy all services
 	@echo http://localhost:8001 dashboard
@@ -118,6 +118,10 @@ kill-prometheus:										## Kill prometheus monitoring
 kill-dashboard:
 	@$(KUBECTL) delete -f $(DASHBOARD)
 	@$(KUBECTL) delete -f deploy/dashboard/dashboard.admin-user.yaml -f deploy/dashboard/dashboard.admin-user-role.yaml
+
+kill-studio:
+	@$(KUBECTL) delete -f deploy/cassandra/studio.yaml
+	@$(KUBECTL) delete ns $(STUDIO)
 
 help:													## Display this help
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n\n"} /^[a-zA-Z_-]+:.*?##/ { printf "  \033[36m%-15s\033[0m 	%s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
