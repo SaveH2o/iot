@@ -65,6 +65,6 @@ Currently following proxies are available:
 
 - Run "make configmap" in order to generate deploy/cassandra/configMap.yaml
 - Check file to get CONNECTION_POINTS, USERNAME and PASSWORD
-- Edit Connection at Datastax Studio to fill Host/IP, Username and Password.
+- Edit Connection at Datastax Studio and fill Host/IP, Username and Password.
 
 ![Screenshot from 2020-11-03 19-01-17](https://user-images.githubusercontent.com/86032/98122828-df461200-1e8f-11eb-8a52-ce30480e6474.png)
