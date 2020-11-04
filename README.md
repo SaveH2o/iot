@@ -61,17 +61,10 @@ Currently following proxies are available:
 - http://localhost:8080 grafana
 - http://localhost:9091 studio
 
-## Provision Cluster
+## Connect Datastax Studio to Cassandra
 
-Provision a Civo K3s cluster.
+- Run "make configmap" in order to generate deploy/cassandra/configMap.yaml
+- Check file to get CONNECTION_POINTS, USERNAME and PASSWORD
+- Edit Connection at Datastax Studio to fill Host/IP, Username and Password.
 
-    make provision
-
-If issues with *civo create* stalls the remote provision, try creating an empty cluster first using civo.com and fill properly the CIVO_TOKEN in the .env file, for example:
-
-    CIVO_TOKEN=wGd9xxx-xxxxxxxxxx-xxxxxxx8PqxE2shygAjCJ
-    SLACK_URL=https://hooks.slack.com/services/xxx/xxx/xxx
-    ADMIN_PASSWORD=xxx
-    WIO1=xxx
-    WIO2=xxx
-    WIO3=xxx
+![Screenshot from 2020-11-03 19-01-17](https://user-images.githubusercontent.com/86032/98122828-df461200-1e8f-11eb-8a52-ce30480e6474.png)
