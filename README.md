@@ -1,6 +1,8 @@
 # iot
 IoT cluster on Google Cloud Platform. Supposing that your already have a running cluster there.
 
+Note: This repo is deprecated, since k8ssandra does the job with almost all features available here.
+
 ## Pre-requisites
 
 * [Helm3](https://helm.sh/docs/intro/install/ "Helm Installation"): to avoid Tiller
